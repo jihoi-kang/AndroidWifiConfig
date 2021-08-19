@@ -1,0 +1,3 @@
+[submodule "base-library"]
+	path = base-library
+	url = https://github.com/jihoi-kang/base-library.git
