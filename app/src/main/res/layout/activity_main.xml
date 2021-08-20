@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.jay.wifi.ui.MainViewModel" />
     </data>
 
     <LinearLayout
@@ -14,10 +17,10 @@
         android:orientation="vertical"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <Toolbar
-            android:id="@+id/main_wifi_switch_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey"
@@ -26,14 +29,14 @@
             android:elevation="4dp">
 
             <Switch
-                android:id="@+id/main_wifi_switch"
+                android:id="@+id/switch_wifi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_wifi_list"
+            android:id="@+id/rv_wifi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

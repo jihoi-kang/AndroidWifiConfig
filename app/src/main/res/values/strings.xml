@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidWifiConfig</string>
+
+    <string name="text_wifi_status">Wifi %s</string>
+    <string name="text_wifi_on">On</string>
+    <string name="text_wifi_off">Off</string>
 </resources>
