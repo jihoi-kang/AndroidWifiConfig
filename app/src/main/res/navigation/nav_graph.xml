@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wifiFragment">
+
+    <fragment
+        android:id="@+id/wifiFragment"
+        android:name="com.jay.wifi.ui.wifi.WifiFragment"
+        android:label="WifiFragment"
+        tools:layout="@layout/fragment_wifi">
+        <action
+            android:id="@+id/actionWifiToStreaming"
+            app:destination="@id/streamingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/streamingFragment"
+        android:name="com.jay.wifi.ui.streaming.StreamingFragment"
+        android:label="StreamingFragment"
+        tools:layout="@layout/fragment_streaming" />
+
+</navigation>

@@ -1,4 +1,4 @@
-package com.jay.wifi.ui
+package com.jay.wifi.ui.wifi
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

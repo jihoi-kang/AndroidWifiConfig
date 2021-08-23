@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">AndroidWifiConfig</string>
 
+    <string name="msg_connect_wifi">Please connect the Wifi of the video streaming device.</string>
+    <string name="msg_start_streaming">Start streaming</string>
+
+
     <string name="text_wifi_status">Wifi %s</string>
     <string name="text_wifi_on">On</string>
     <string name="text_wifi_off">Off</string>

@@ -1,8 +1,8 @@
-package com.jay.wifi.ui
+package com.jay.wifi.ui.streaming
 
 import com.base.library.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : BaseViewModel()
+class StreamingViewModel @Inject constructor() : BaseViewModel()

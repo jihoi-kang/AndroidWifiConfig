@@ -1,20 +1,16 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
+    compileSdkVersion versions.compile_sdk_version
     defaultConfig {
         applicationId "com.jay.wifi"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion versions.min_sdk_version
+        targetSdkVersion versions.target_sdk_version
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,4 +34,8 @@ android {
 
 dependencies {
     implementation project(':base-library')
+
+    // navigation
+    implementation deps.androidx.navigation_ui_ktx
+    implementation deps.androidx.navigation_fragment_ktx
 }
