@@ -38,4 +38,7 @@ dependencies {
     // navigation
     implementation deps.androidx.navigation_ui_ktx
     implementation deps.androidx.navigation_fragment_ktx
+
+    // video streaming
+    implementation 'org.videolan:vlc-lib-android:3.1.7'
 }
