@@ -1,7 +1,9 @@
 package com.jay.wifi.ui.streaming
 
+import android.graphics.SurfaceTexture
 import android.net.Uri
 import android.os.Bundle
+import android.view.TextureView
 import android.view.View
 import com.base.library.ui.BaseFragment
 import com.jay.wifi.R
@@ -15,7 +17,7 @@ import org.videolan.libvlc.MediaPlayer
 @AndroidEntryPoint
 class StreamingFragment : BaseFragment<FragmentStreamingBinding, StreamingViewModel>(
     R.layout.fragment_streaming
-), IVLCVout.Callback, MediaPlayer.EventListener {
+), IVLCVout.Callback, MediaPlayer.EventListener, TextureView.SurfaceTextureListener {
     private val libVlc by lazy {
         LibVLC(context, OPTIONS)
     }
@@ -30,24 +32,8 @@ class StreamingFragment : BaseFragment<FragmentStreamingBinding, StreamingViewMo
     }
 
     private fun setupUi() {
-        binding.svStreaming.holder.setKeepScreenOn(true)
-        mediaPlayer.setEventListener(this)
-
-        mediaPlayer.vlcVout.run {
-            setVideoView(binding.svStreaming)
-            addCallback(this@StreamingFragment)
-            attachViews()
-        }
-
-        mediaPlayer.media = Media(libVlc, Uri.parse("rtsp://$IP:$PORT")).apply {
-            setHWDecoderEnabled(true, false)
-            addOption(":network-caching=150")
-            addOption(":clock-jitter=0")
-            addOption(":clock-synchro=0")
-            addOption(":fullscreen")
-        }
-        mediaPlayer.aspectRatio = "4:3"
-        mediaPlayer.play()
+        binding.tvStreaming.keepScreenOn = true
+        binding.tvStreaming.surfaceTextureListener = this
     }
 
     override fun onDestroy() {
@@ -81,8 +67,45 @@ class StreamingFragment : BaseFragment<FragmentStreamingBinding, StreamingViewMo
         }
     }
 
+    /**********/
+    override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
+        mediaPlayer.vlcVout.run {
+            detachViews()
+            setVideoView(binding.tvStreaming)
+            setWindowSize(binding.tvStreaming.width, binding.tvStreaming.height)
+            attachViews()
+            addCallback(this@StreamingFragment)
+        }
+
+        mediaPlayer.setEventListener(this)
+
+        mediaPlayer.media = Media(libVlc, Uri.parse("rtsp://$IP:$PORT")).apply {
+            setHWDecoderEnabled(true, false)
+            addOption(":network-caching=150")
+            addOption(":clock-jitter=0")
+            addOption(":clock-synchro=0")
+            addOption(":fullscreen")
+        }
+
+        mediaPlayer.aspectRatio = "4:3"
+        mediaPlayer.play()
+    }
+
+    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
+        TODO("Not yet implemented")
+        return false
+    }
+
+    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {
+        TODO("Not yet implemented")
+    }
+
     companion object {
-        private const val IP = "192.168.0.29"
+        private const val IP = "192.168.0.24"
         private const val PORT = 1234
 
         private val OPTIONS = arrayListOf(
